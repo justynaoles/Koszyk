@@ -1,0 +1,458 @@
+@import 'variables';
+@import 'mixins';
+
+.shopping-basket {
+
+  height: 100%;
+  width: 100%;
+  background-color: $white;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 5;
+  padding: 12px 17px 20px 10px;
+  color: $dark-grey;
+  margin-right: -600px;
+  opacity: 0;
+  transition: all .5s ease;
+
+  @media (min-width: 360px) {
+    width: 300px;
+  }
+
+  @media (min-width: $mid-width) {
+    width: 335px;
+    padding: 25px 20px 20px 20px;
+  }
+
+  @media (min-width: $large-width) {
+    padding: 35px 20px 20px 20px;
+  }
+
+  .btn-close {
+    font-size: 1rem;
+  }
+
+  .icon-close {
+    color: $dark-grey;
+    cursor: pointer;
+
+    &:hover {
+
+      animation: spin .5s linear;
+    }
+  }
+
+  .icon-alert {
+    color: $white;
+    font-size: 1.25rem;
+  }
+
+  .icon-trash {
+    font-size: 1.15rem;
+  }
+
+  .icon-info {
+    font-size: 1.25rem;
+  }
+
+  .btn-fav {
+    cursor: pointer;
+    color: $dark-grey;
+
+    @media (min-width: $mid-width) {
+
+      &:hover {
+        color: $main-green;
+      }
+    }
+  }
+
+
+  .btn-fav.active {
+
+    .icon-heart-1 {
+
+      &:before {
+        color: $dark-grey;
+      }
+
+      &:after {
+        color: $dark-grey;
+      }
+
+      @media (min-width: $mid-width) {
+        &:before {
+          color: inherit;
+        }
+
+        &:after {
+          color: inherit;
+        }
+      }
+    }
+  }
+
+  .icon-heart-1 {
+
+    color: inherit;
+    position: relative;
+    font-size: 1rem;
+    padding: 0;
+  }
+
+  .icon-basket-1 {
+
+    font-size: 1rem;
+    padding: 0;
+
+    @media (min-width: $large-width) {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.shopping-basket.active {
+  margin-right: 0;
+  opacity: 1;
+}
+
+.shopping-basket-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: $white;
+}
+
+.shopping-basket-header {
+
+  @include font-line(0.75rem, 1rem);
+  padding: 7px 0 6px 0;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  color: $dark-grey;
+
+  @media (min-width: $mid-width) {
+    @include font-line(0.8rem, 1rem);
+  }
+
+  @media (min-width: $large-width) {
+    @include font-line(0.9rem, 1.15rem);
+  }
+}
+
+.shopping-basket-items {
+
+  height: calc(100% - 240px);
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  @media (min-width: $mid-width) {
+    height: calc(100% - 300px);
+  }
+
+}
+
+.shopping-basket-footer {
+
+  background-color: $white;
+  width: 100%;
+}
+
+.basket {
+
+  display: flex;
+  width: 100%;
+  padding: 10px 0;
+  background-color: $white;
+  border-bottom: 1px solid #e6e6e6;
+  position: relative;
+  transition: opacity .5s ease;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+
+  @media (min-width: $mid-width) {
+
+    padding: 20px 0;
+  }
+}
+
+.basket-item-img {
+  height: 113px;
+  width: 85px;
+
+  img {
+
+    height: 100%;
+    max-width: 100%;
+  }
+
+  @media (min-width: $large-width) {
+
+    height: 133px;
+    width: 100px;
+  }
+}
+
+.basket-item-content {
+
+  @include font-line(0.75rem, 1rem);
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 85px);
+  padding-left: 10px;
+
+  @media (min-width: $mid-width) {
+    padding-left: 20px;
+  }
+
+  @media (min-width: $large-width) {
+    width: calc(100% - 100px);
+  }
+}
+
+.item-title {
+
+  @include font-line(0.75rem, 1rem);
+  padding-bottom: 15px;
+  font-weight: 500;
+
+  @media (min-width: $large-width) {
+    padding-bottom: 25px;
+  }
+}
+
+.item-properties {
+
+  padding-bottom: 15px;
+
+  @media (min-width: $large-width) {
+    padding-bottom: 25px;
+  }
+}
+
+.btn-wrapper {
+
+  .btn-delete {
+
+    color: inherit;
+    transition: color .5s ease;
+
+    &:hover {
+
+        color: $main-green;
+    }
+  }
+
+  button {
+
+    display: inline-block;
+  }
+}
+
+.item-details {
+  font-weight: 400;
+}
+
+.item-value {
+  padding: 0 2px;
+  font-weight: 500;
+}
+
+.item-price {
+  display: flex;
+}
+
+.item-currency {
+  font-weight: 500;
+  padding-left: 3px;
+}
+
+.prev-value {
+
+  padding: 0 4px;
+  font-weight: 400;
+  text-decoration: line-through;
+}
+
+.shopping-summary {
+
+  @include font-line(0.75rem, 1.25rem);
+  font-weight: 400;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 15px;
+
+  @media (min-width: $mid-width) {
+
+    @include font-line(0.8rem, 1.15rem);
+    padding-top: 20px;
+  }
+
+  @media (min-width: $large-width) {
+
+    @include font-line(0.9rem, 1rem);
+    padding-top: 20px;
+  }
+}
+
+.summary-item {
+
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 12px;
+
+  @media (min-width: $mid-width) {
+    padding-bottom: 10px;
+  }
+
+  @media (min-width: $mid-width) {
+    padding-bottom: 14px;
+  }
+}
+
+.summary-item .price {
+  font-weight: 500;
+}
+
+.summary .price {
+  font-size: 1.5rem;
+}
+
+.summary .item-currency {
+  font-size: 1.5rem;
+}
+
+.sumary-item .summary {
+
+  padding-bottom: 10px;
+
+  @media (min-width: $mid-width) {
+    padding-bottom: 12px
+  }
+}
+
+.summary-item.transport {
+
+  padding-bottom: 8px;
+
+  @media (min-width: $mid-width) {
+    padding-bottom: 12px
+  }
+
+  @media (min-width: $large-width) {
+    padding-bottom: 40px
+  }
+}
+
+.transport.free {
+
+  .price {
+    color: $btn-green;
+  }
+
+  .item-currency {
+    display: none;
+  }
+}
+
+.summary .value-title {
+  font-weight: 500;
+  align-self: flex-end;
+}
+
+.btn-basket {
+
+  @include font-line(0.75rem, 0.9rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  padding: 10px;
+  color: $white;
+  background-color: $btn-green;
+  transition: background-color .5s ease;
+  cursor: pointer;
+  width: 100%;
+
+  img {
+    height: 20px;
+    width: 20px;
+  }
+
+  @media (min-width: $mid-width) {
+
+    @include font-line(0.9rem, 1.15rem);
+    margin-top: 7px;
+    padding: 15px 20px;
+  }
+
+  @media (min-width: $large-width) {
+    margin-top: 3px;
+  }
+
+  &:hover {
+
+    color: $white;
+    background-color: $btn-green-hov;
+  }
+}
+
+.btn-empty {
+
+  background-color: $dark-grey;
+
+  &:hover {
+    background-color: $dark-grey;
+  }
+}
+
+.btn-alert {
+
+  background-color: $alert;
+
+  &:hover {
+    background-color: $alert;
+  }
+}
+
+.btn-delete {
+  cursor: pointer;
+}
+
+.hint-add {
+  @include font-line(0.9rem, 1.15rem);
+  font-weight: 500;
+}
+
+.shopping-basket {
+
+  .btn-delete:hover {
+
+    color: $main-green;
+  }
+
+  .icon-trash, .icon-heart, .icon-close {
+    height: 15px;
+    width: 15px;
+  }
+
+  .icon-trash {
+    margin-right: 10px;
+  }
+
+  @keyframes spin {
+    
+    0% {
+      transform: rotate(0deg)
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

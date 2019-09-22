@@ -1,0 +1,67 @@
+@import 'variables';
+
+.header {
+
+    min-height:50px;
+    width: 100%;
+    background-color: $white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.header-wrapper {
+    padding: 0 20px;
+}
+
+.header-menu {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_ul {
+
+    position: fixed;
+        top:0;
+        left: 0;
+        margin-left: -200%;
+        z-index: 2;
+    width: 70%;
+    background-color: $white;
+    padding: 30px 10px;
+    transition: margin-left .5s ease-in-out;
+}
+.header-menu--icon {
+    height: 20px;
+    width:20px;
+}
+
+.header_logo {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+        left: 50%;
+        top:0;
+        transform: translateX(-50%);
+}
+.header_logo--logo {
+
+    height: 50px;
+    width: 50px;
+}
+
+.header_customer-panel {
+    display: flex;
+}
+.header_customer--icon {
+    height: 20px;
+}
+
+.header-basket {
+    margin-left: 10px;
+}
