@@ -41,7 +41,6 @@
       $('.btn-empty').on('click', function(){
         $(this).addClass('btn-alert');
         $(this).removeClass('btn-empty');
-        $(this).html('Koszyk jest pusty. Dodaj produkt'+'<span class="icon-info"></span>');
       });
     
       $('.shopping-summary .summary-item').not('.summary').find('.value-price').text('-');
