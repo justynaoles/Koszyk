@@ -36,7 +36,7 @@
       $('.products-quantity .quantity').text('0'); 
       $(btnPay).addClass('btn-empty');
       $('.icon-basket-1').removeClass('active');
-      $('.shopping-basket-items').html('<p class="hint-add">Dodaj coś do koszyka :)</p>').addClass('center-row');
+
     
       $('.btn-empty').on('click', function(){
         $(this).addClass('btn-alert');
