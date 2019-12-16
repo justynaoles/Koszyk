@@ -298,30 +298,30 @@
 
     <form class="transport-form">
 
-        <p class="form-step">Wybierz kraj: </p>
+        <p class="form-step" id="inputs-radio">Wybierz kraj: </p>
         <div class="labels-wrapper">
             <label class="transport-form--label">
-                <input class="transport-form--input" type="radio" data-country="PL">
+                <input class="transport-form--input" type="radio" data-country="PL" name="country">
                 <span class="transport-form-checkmark"></span>
                 Polska
             </label>
 
             <label class="transport-form--label">
-                <input class="transport-form--input" type="radio" data-country="DE">
+                <input class="transport-form--input" type="radio" data-country="DE" name="country">
                 <span class="transport-form-checkmark"></span>
                 Niemcy
             </label>
 
             <label class="transport-form--label">
-                <input class="transport-form--input" type="radio" data-country="CZ">
+                <input class="transport-form--input" type="radio" data-country="CZ" name="country">
                 <span class="transport-form-checkmark"></span>
                 Czechy
             </label>
         </div>
 
-        <p class="form-step">Podaj kwotę zamówienia:</p>
+        <p class="form-step" id="input-ordervalue">Podaj kwotę zamówienia:</p>
         <label class="form-step mt-1">
-            <input class="transport-order--input" type="number" min-val="1" max-val="2000">
+            <input class="transport-order--input" type="number" value="10" min-val="1" max-val="2000">
         </label>
     </form>
 
@@ -423,22 +423,52 @@
                 }
     }
     
-    
-    orderCosts("DE","49.99");
 
+    //walidacja
+    const btnSubmit = document.querySelector('.form-button');
 
     function formValidation(){
 
-        document.querySelector('.transport-form').onkeypress = function(e) {
-            var key = e.charCode || e.keyCode || 0;     
-            if (key == 13) {
-                e.preventDefault();
+        const form = document.querySelector('.transport-form');
+        let inputsCountry = document.querySelectorAll('.transport-form--input');
+        inputsCountry = [...inputsCountry];
+        let isCountryChoosen= false;
+        let isOrderValueGiven = document.querySelector('.transport-order--input').value;
+        let chosenCountry;
+        
+      
+        for( let i = 0; i <inputsCountry.length; i++) {
+
+            if(inputsCountry[i].checked) {
+
+                isCountryChoosen = true;
+                chosenCountry = inputsCountry[i].dataset.country;
+                console.log(inputsCountry[i].dataset.country)
+                break;
             }
-        }
+
+            else {
+                console.log('nie mamu inputu')
+            }
+         
+         }
+
+         if(isCountryChoosen && isOrderValueGiven) {
+
+            console.log('formularz poprawnie uzupelniony')
+            orderCosts(chosenCountry,isOrderValueGiven);
+         }
+
+         else {
+
+            console.log("formularz zly")
+         }         
     }
 
+    btnSubmit.addEventListener('click', formValidation);
 
-    formValidation();
+
+    console.log()
     
     </script>
 </body>

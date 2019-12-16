@@ -7,7 +7,6 @@ const sass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 
 
-
 //Tasks
 gulp.task('hello', gulp.series((done) => {
 
