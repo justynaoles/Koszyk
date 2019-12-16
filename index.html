@@ -90,11 +90,11 @@
                     <div class="btn-wrapper">
 
                         <button type="button" aria-label="Zamknij" class="btn-delete btn-icon">
-                            <img class="icon-trash btn" src="./dist/svg/garbage.svg">
+                            <img class="icon-trash" src="./dist/svg/garbage.svg">
                         </button>
 
                         <button type="button" aria-label="Ulubione" class="btn-fav btn-icon">
-                            <img class="icon-heart btn" src="./dist/svg/heart.svg">
+                            <img class="icon-heart" src="./dist/svg/heart.svg">
                         </button>
 
                     </div>
@@ -131,11 +131,11 @@
                     <div class="btn-wrapper">
 
                         <button type="button" aria-label="Zamknij" class="btn-delete btn-icon">
-                            <img class="icon-trash btn" src="./dist/svg/garbage.svg">
+                            <img class="icon-trash" src="./dist/svg/garbage.svg">
                         </button>
 
                         <button type="button" aria-label="Ulubione" class="btn-fav btn-icon">
-                            <img class="icon-heart btn" src="./dist/svg/heart.svg">
+                            <img class="icon-heart" src="./dist/svg/heart.svg">
                         </button>
 
                     </div>
@@ -172,11 +172,11 @@
                     <div class="btn-wrapper">
 
                         <button type="button" aria-label="Zamknij" class="btn-delete btn-icon">
-                            <img class="icon-trash btn" src="./dist/svg/garbage.svg">
+                            <img class="icon-trash" src="./dist/svg/garbage.svg">
                         </button>
 
                         <button type="button" aria-label="Ulubione" class="btn-fav btn-icon">
-                            <img class="icon-heart btn" src="./dist/svg/heart.svg">
+                            <img class="icon-heart" src="./dist/svg/heart.svg">
                         </button>
 
                     </div>
@@ -213,11 +213,11 @@
                     <div class="btn-wrapper">
 
                         <button type="button" aria-label="Zamknij" class="btn-delete btn-icon">
-                            <img class="icon-trash btn" src="./dist/svg/garbage.svg">
+                            <img class="icon-trash" src="./dist/svg/garbage.svg">
                         </button>
 
                         <button type="button" aria-label="Ulubione" class="btn-fav btn-icon">
-                            <img class="icon-heart btn" src="./dist/svg/heart.svg">
+                            <img class="icon-heart" src="./dist/svg/heart.svg">
                         </button>
 
                     </div>
@@ -292,10 +292,154 @@
 
 </div>
 
+
+<div class="transport-costs">
+    <h3 class="transport-header">Sprawdź koszty transportu w wybranym kraju:</h3>
+
+    <form class="transport-form">
+
+        <p class="form-step">Wybierz kraj: </p>
+        <div class="labels-wrapper">
+            <label class="transport-form--label">
+                <input class="transport-form--input" type="radio" data-country="PL">
+                <span class="transport-form-checkmark"></span>
+                Polska
+            </label>
+
+            <label class="transport-form--label">
+                <input class="transport-form--input" type="radio" data-country="DE">
+                <span class="transport-form-checkmark"></span>
+                Niemcy
+            </label>
+
+            <label class="transport-form--label">
+                <input class="transport-form--input" type="radio" data-country="CZ">
+                <span class="transport-form-checkmark"></span>
+                Czechy
+            </label>
+        </div>
+
+        <p class="form-step">Podaj kwotę zamówienia:</p>
+        <label class="form-step mt-1">
+            <input class="transport-order--input" type="number" min-val="1" max-val="2000">
+        </label>
+    </form>
+
+    <div class="transport-summary">
+        <span class="transport-summary--text">Koszt: </span>
+        <span class="transport-summary--value">???</span>
+    </div>
+
+    <button class="form-button mt-2" type="button">Sprawdź</button>
+</div>
+
 <body>
 
     <script src="./src/js/libs/jquery-3.3.1.min.js"></script>
     <script src="./src/js/main.js"></script>
 
+    <h1 class="costs"></h1>
+
+    <script>
+    
+    const costs = [
+
+        {
+            country: "PL",
+            minVal: 150,
+    
+        },
+        {
+            country: "CZ",
+            minVal: 350,
+    
+        },
+        {
+            country: "DE",
+            minVal: 450,
+    
+        }
+    ];
+    
+    
+    function orderCosts(country,orderVal){
+    
+        const order = document.querySelector('.transport-summary--value');
+        let isCountryCorrect = true;
+        let minVal;
+        let freeOrder;
+        let orderCost;
+        let currency;
+    
+        switch(country) {
+    
+            case "PL" :
+                
+                minVal = 150;
+                orderCost = 25;
+                freeOrder = "Darmowa wysyłka";
+                currency = "zł"
+                break;
+    
+            case "DE":
+    
+                minVal = 350;
+                orderCost = 30;
+                freeOrder = "Kostenloser Versand";
+                currency = "eur"
+                break;
+    
+            case "CZ":
+            
+                minVal = 450;
+                orderCost = 125;
+                freeOrder = "Doprava zdarma";
+                currency ="czk"
+                break;
+    
+            default: {
+            
+                isCountryCorrect = false;
+    
+             }
+    
+        }
+    
+        if(orderVal >= minVal && isCountryCorrect) {
+            order.textContent = freeOrder;
+            }
+    
+            else if (orderVal < minVal && isCountryCorrect){
+    
+                order.textContent = orderCost+currency;
+    
+                }
+                
+                else {
+                
+                    order.textContent = "error :(";
+                    alert('Wystąpił wewnętrzny problem z lokalizacją kraju wysyłki. Błąd został zgłoszony. Skontaktuj się proszę z działem obsługi klienta. Przepraszamy za utrudnienia.');
+                    
+                }
+    }
+    
+    
+    orderCosts("DE","49.99");
+
+
+    function formValidation(){
+
+        document.querySelector('.transport-form').onkeypress = function(e) {
+            var key = e.charCode || e.keyCode || 0;     
+            if (key == 13) {
+                e.preventDefault();
+            }
+        }
+    }
+
+
+    formValidation();
+    
+    </script>
 </body>
 </html>
