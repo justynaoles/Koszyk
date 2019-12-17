@@ -5,7 +5,6 @@
     
       setTimeout( function(){
     
- 
         $('.overlay').fadeOut();
         $('.shopping-basket').removeClass('active');
       },200);

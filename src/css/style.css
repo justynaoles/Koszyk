@@ -539,7 +539,8 @@ input[type=number] {
     height: 50%;
     width: 50%;
     background-color: purple;
-    transition: all .3s ease; }
+    transition: all .3s ease;
+    cursor: pointer; }
 
 .transport-summary {
   font-size: 1.1rem;
@@ -560,6 +561,8 @@ input[type=number] {
 
 .form-step {
   font-weight: 500; }
+  .form-step.error {
+    color: red; }
 
 .transport-order--input {
   border-bottom: 1px solid #161616;
